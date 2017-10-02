@@ -13,8 +13,6 @@ var places = require('./routes/places');
 
 var app = express();
 
-app.listen(process.env.PORT || 3001)
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
