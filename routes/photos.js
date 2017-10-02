@@ -28,6 +28,7 @@ cloudinary.config({
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+	console.log('Photos Get')
 	Image.find()
 	.exec(function(err, images) {
 		if (!images) {
