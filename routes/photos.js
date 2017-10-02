@@ -39,6 +39,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/uploads', function(req, res, next) {
+	console.log('Photos Post');
 
 	if (!req.files) {
 		return res.send(415, 'No file submitted'); 
@@ -81,7 +82,7 @@ router.post('/uploads', function(req, res, next) {
 
 	deleteTempFile(tempPath);
 	addToMarkers(req);
-
+	console.log(res);
 	res.send('Post Finished');
 });
 
