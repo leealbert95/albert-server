@@ -3,7 +3,10 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var fs = require('fs');
 var path = require('path');
-mongoose.connect('mongodb://leea8:albertdb@ds121464.mlab.com:21464/albert-site-db');
+
+var MONGOLAB_URI = process.env.MONGOLAB_URI ? process.env.MONGOLAB_URI : 'mongodb://leea8:albertdb@ds121464.mlab.com:21464/albert-site-db';
+mongoose.connect(MONGOLAB_URI);
+
 var db = mongoose.connection; 
 
 var Marker = require('./schemas/MarkerSchema');

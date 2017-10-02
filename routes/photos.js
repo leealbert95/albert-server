@@ -6,7 +6,10 @@ var path = require('path');
 var uid = require('uid-safe');
 var mime = require('mime');
 var util = require('util');
-mongoose.connect('mongodb://leea8:albertdb@ds121464.mlab.com:21464/albert-site-db');
+
+var MONGOLAB_URI = process.env.MONGOLAB_URI ? process.env.MONGOLAB_URI : 'mongodb://leea8:albertdb@ds121464.mlab.com:21464/albert-site-db';
+mongoose.connect(MONGOLAB_URI);
+
 var db = mongoose.connection; 
 
 var Image = require('./schemas/ImageSchema');
