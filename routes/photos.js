@@ -17,7 +17,7 @@ var storage = multer.diskStorage({
   }
 })
 
-router.use(multer({ storage: storage }).array('file'));
+//router.use(multer({ storage: storage }).array('file'));
 
 var MONGOLAB_URI = process.env.MONGOLAB_URI ? process.env.MONGOLAB_URI : 'mongodb://leea8:albertdb@ds121464.mlab.com:21464/albert-site-db';
 mongoose.connect(MONGOLAB_URI);
