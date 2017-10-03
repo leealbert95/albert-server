@@ -10,14 +10,14 @@ var multer = require('multer');
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './tmp')
+    cb(null, '/tmp')
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + '-' + file.originalname) //Appending .jpg
   }
 })
 
-//router.use(multer({ storage: storage }).array('file'));
+router.use(multer({ storage: storage }).array('file'));
 
 var MONGOLAB_URI = process.env.MONGOLAB_URI ? process.env.MONGOLAB_URI : 'mongodb://leea8:albertdb@ds121464.mlab.com:21464/albert-site-db';
 mongoose.connect(MONGOLAB_URI);
@@ -58,15 +58,16 @@ router.post('/', function(req, res, next) {
 	if (!req.files) {
 		return res.send(415, 'No file submitted'); 
 	}
-
+	console.log(req.files[0].path);
 	var type = req.files[0].mimetype;
+	console.log('Photos Post 3');
 
 	if (IMAGE_TYPES.indexOf(type) == -1) {
 		return res.send(415, 'Unsupported image type: Must be jpeg, jpg, jpe, or png');
 	}	
 
 	var tempPath = req.files[0].path;
-
+	console.log('Photos Post 4');
 	cloudinary.v2.uploader.upload(tempPath, {angle: "exif"}, function (err, result) {
 		if (err) {
 			return handleError(err); 
