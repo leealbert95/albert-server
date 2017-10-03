@@ -51,6 +51,11 @@ router.get('/', function(req, res, next) {
 	});
 });
 
+router.post('/photostest', function(req, res, next) {
+  console.log('Photos Post');
+  res.send('Photos Post');
+})
+
 router.post('/', function(req, res, next) {
 	console.log('Photos Post');
 
