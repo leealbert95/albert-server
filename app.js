@@ -4,7 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var multer = require('multer');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -24,17 +23,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './tmp')
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname) //Appending .jpg
-  }
-})
-
-app.use(multer({ storage: storage }).array('file'));
 
 app.use('/', index);
 app.use('/users', users);
