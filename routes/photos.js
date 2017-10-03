@@ -53,21 +53,18 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/', function(req, res, next) {
-	console.log('Photos Post');
 
 	if (!req.files) {
 		return res.send(415, 'No file submitted'); 
 	}
-	console.log(req.files[0].path);
 	var type = req.files[0].mimetype;
-	console.log('Photos Post 3');
 
 	if (IMAGE_TYPES.indexOf(type) == -1) {
 		return res.send(415, 'Unsupported image type: Must be jpeg, jpg, jpe, or png');
 	}	
 
 	var tempPath = req.files[0].path;
-	console.log('Photos Post 4');
+	
 	cloudinary.v2.uploader.upload(tempPath, {angle: "exif"}, function (err, result) {
 		if (err) {
 			return handleError(err); 
@@ -101,7 +98,7 @@ router.post('/', function(req, res, next) {
 	res.send('Post Finished');
 });
 
-router.delete('/delete', function(req, res, next) {
+router.delete('/delete_all', function(req, res, next) {
 	console.log('delete request');
 	cloudinary.v2.api.delete_all_resources();
 	Image.remove(function(err) {
