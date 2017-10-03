@@ -39,7 +39,7 @@ router.get('/', function(req, res, next) {
 	});
 });
 
-router.post('/uploads', function(req, res, next) {
+router.post('/', function(req, res, next) {
 	console.log('Photos Post');
 
 	if (!req.files) {
